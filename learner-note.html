@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Learner Notes Library</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="MathAffiliation" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="learner-note.css">
+</head>
+
+<body>
+<div class="topbar">
+<button onclick="window.location.href='dashboard1.html'">⬅ Back</button>
+<strong>Learner Study Notes</strong>
+</div>
+
+<div class="container">
+
+<h2>Subjects</h2>
+<div id="subjectsGrid" class="grid"></div>
+
+<div id="unitsSection"></div>
+
+<div id="topicsSection"></div>
+
+</div>
+
+
+<div id="slideViewer" class="slideViewer">
+
+<div class="slide" id="slideContent"></div>
+
+<div class="slide-controls">
+<button onclick="prevSlide()">Previous</button>
+<button onclick="nextSlide()">Next</button>
+<button onclick="closeSlides()">Close</button>
+</div>
+
+</div>
+
+
+<script type="module" src="learner-note.js">
+
+
+</script>
+
+</body>
+</html>

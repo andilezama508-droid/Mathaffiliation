@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>Attendance</title>
+      <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="MathAffiliation" />
+  <link rel="manifest" href="/site.webmanifest" /></head><style>/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}</style>
+<table id="attendanceTable">
+  <tr>
+    <th>Student Name</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>John Doe</td>
+    <td>
+      <button onclick="markAttendance('John Doe', true)">Present</button>
+      <button onclick="markAttendance('John Doe', false)">Absent</button>
+ 
+</tr>
+  </tr>
+</table>
+
+<script>
+  function markAttendance(student, status) {
+    // Example: Save to Firebase or local storage
+    const record = {
+      student: student,
+      date: new Date().toLocaleDateString(),
+      status: status ? "Present" : "Absent"
+    };
+
+    console.log("Attendance recorded:", record);
+
+    // If using Firebase:
+    // firebase.database().ref("attendance").push(record);
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("darkMode") === "enabled" || 
+      (!localStorage.getItem("darkMode") && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.classList.add("dark-mode");
+  }
+});
+
+</script>
+</body>
+</html>

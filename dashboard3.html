@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutor Dashboard | MathAffilliation</title>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="stylesheet" href=dashboard.css>
+
+
+</head>
+
+<body style="display:block;">
+
+<div class="topbar">
+  <h2>Mathafilliation Tutor Dashboard</h2>
+  <button id="logout-btn">Logout</button>
+</div>
+
+<div class="container">
+  <img id="tutorPhoto" src="" alt="Tutor Photo">
+  <h1 id="welcomeText">Welcome</h1>
+  <p id="lastLogin"></p>
+  <p id="tutorSubjects"></p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>👥 My Students</h3>
+      <p>View assigned learners</p>
+      <button onclick="window.location.href='learners.html'">Open</button>
+    </div>
+
+    <div class="card">
+      <h3>📝 Create Quiz</h3>
+      <p>Set quizzes for students</p>
+      <button onclick="window.location.href='tutor-quize.html'">Open</button>
+    </div>
+
+    <div class="card">
+      <h3>📊 Quiz Results</h3>
+      <p>View quiz outcomes</p>
+      <button onclick="window.location.href='quize-score.html'">Open</button>
+    </div>
+
+    <div class="card">
+      <h3>📚 Upload Materials</h3>
+      <p>Share notes and resources</p>
+      <button onclick="window.location.href='tutor-upload.html'">Open</button>
+    </div>
+
+    <div class="card">
+      <h3>💬 Respond to Questions</h3>
+      <p>View and respond to learner questions</p>
+      <button onclick="window.location.href='Tutor-responder.html'">Open</button>
+    </div>
+
+    <div class="card">
+      <h3>📈 My Activity Logs</h3>
+      <p>Track your login activity</p>
+      <button onclick="window.location.href='tutor-logs.html'">Open</button>
+    </div>
+
+    <div class="card">
+      <h3>📚 Upload Short Notes</h3>
+      <p>Share quick notes</p>
+      <button onclick="window.location.href='tutor-note.html'">Open</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="dashboard3.js">
+
+</script>
+
+</body>
+</html>

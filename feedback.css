@@ -1,0 +1,44 @@
+body {margin:0; font-family:Arial; background:#f3f0f7; padding:20px; box-sizing:border-box;}
+.topbar {background:#750092; color:white; padding:14px 20px; display:flex; justify-content:space-between; align-items:center; border-radius:10px; position:sticky; top:0; z-index:100; box-shadow:0 4px 10px rgba(0,0,0,.2);}
+.topbar h2{margin:0;font-size:1.5rem;}
+.topbar button{background:#bc76e4;border:none;padding:8px 14px;border-radius:8px;color:white;font-weight:bold;cursor:pointer;}
+.topbar button:hover{background:#fff;color:#750092;}
+
+/* ASK QUESTION */
+.ask-box{background:#eddef1;padding:20px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.1);margin-bottom:40px;}
+.ask-box input, .ask-box textarea, .ask-box select{width:100%;padding:12px;margin-top:12px;border-radius:8px;border:1px solid #ccc;font-size:1rem;background:#fafafa;box-sizing:border-box;}
+.ask-box button{width:100%;margin-top:15px;background:#bc76e4;color:white;border:none;padding:12px;font-weight:bold;border-radius:8px;cursor:pointer;}
+.ask-box button:hover{background:#750092;}
+
+/* FEEDBACK */
+.layout{display:flex;gap:20px;margin-bottom:40px;}
+.subjects{width:240px;background:white;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.1);padding:15px;height:calc(100vh - 300px);overflow-y:auto;}
+.subjects h3{margin-top:0;color:#560a72;}
+.subject-btn{display:block;width:100%;text-align:left;margin-bottom:8px;padding:10px;border:none;border-radius:8px;background:#eee;cursor:pointer;font-weight:bold;}
+.subject-btn.active{background:#bc76e4;color:white;}
+.preview{font-size:12px;color:#666;margin-top:3px;}
+.unread{background:red;color:white;font-size:12px;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-left:6px;}
+.chat{flex:1;padding:20px;height:calc(100vh - 300px);overflow-y:auto;background:#fff;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.1);}
+.msg{display:flex;margin-bottom:14px;}
+.bubble{max-width:75%;padding:12px 16px;border-radius:18px;position:relative;box-shadow:0 1px 3px rgba(0,0,0,.15);}
+.msg.learner{justify-content:flex-end;}
+.msg.learner .bubble{background:#d5f9d6;border-bottom-right-radius:4px;}
+.msg.admin{justify-content:flex-start;}
+.msg.admin .bubble{background:#fafafa;border-bottom-left-radius:4px;}
+.meta{font-size:11px;color:#555;text-align:right;}
+.bubble img{max-width:220px;border-radius:8px;margin-top:6px;cursor:pointer;}
+#viewer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);justify-content:center;align-items:center;z-index:1000;}
+#viewer img{max-width:95%;max-height:95%;border-radius:10px;}
+@media(max-width:800px){.layout{flex-direction:column;}.subjects{width:100%;height:auto;}.chat{height:400px;}}
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

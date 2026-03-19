@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Quiz Manager | MathAffiliation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<meta name="apple-mobile-web-app-title" content="Mathaffiliation"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<link rel="stylesheet" href="admin-quize.css">
+</head>
+<body>
+
+<div class="topbar">
+<button onclick="window.location.href='dashboard.html'">⬅ Back</button>
+<div><strong>Admin – Quiz Manager</strong></div>
+<button onclick="location.reload()">Refresh</button>
+</div>
+
+<div class="container">
+
+<div class="form-box">
+
+<h2>Create / Edit Quiz</h2>
+
+<label>Quiz Title</label>
+<input id="quizTitle">
+
+<label>Grade</label>
+<select id="quizGrade">
+<option value="8">Grade 8</option>
+<option value="9">Grade 9</option>
+<option value="10">Grade 10</option>
+<option value="11">Grade 11</option>
+<option value="12">Grade 12</option>
+</select>
+
+<label>Subject</label>
+<select id="quizSubject"></select>
+
+<label>Time Limit (minutes)</label>
+<input type="number" id="quizTime">
+
+<label>Number of Attempts</label>
+<input type="number" id="quizAttempts" value="1">
+
+<button onclick="addQuestion()">Add Question</button>
+
+<label style="margin-top:20px;">Upload Worksheet (Auto Extract Questions)</label>
+<input type="file" id="worksheetUpload" accept="image/*">
+<button onclick="extractWorksheet()">Extract Questions</button>
+
+<div id="questions"></div>
+
+<br>
+<button onclick="saveQuiz()">Save Quiz</button>
+
+</div>
+
+<h2>Manage Quizzes</h2>
+<input id="searchBox" placeholder="Search quizzes...">
+<div id="quizList"></div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+<script type="module" src="admin-quize.js"></script>
+
+</body>
+</html>

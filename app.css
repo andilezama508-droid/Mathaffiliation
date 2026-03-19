@@ -1,0 +1,63 @@
+/* DARK MODE */
+.dark-mode {
+  background: #1a1a1a !important;
+  color: #eee !important;
+}
+
+.dark-mode .navbar {
+  background: rgba(115,0,115,0.85) !important;
+  border-bottom: 3px solid #9c27b0 !important;
+}
+
+.dark-mode header {
+  background: #222 !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,.5) !important;
+}
+
+.dark-mode .hero {
+  background:
+    linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)),
+    url("images/WhatsApp Image 2025-12-15 at 11.41.20.jpeg") center/cover !important;
+  border-bottom: 5px solid #9c27b0 !important;
+  color: #fff !important;
+}
+
+.dark-mode .section {
+  background: #222 !important;
+  color: #ddd !important;
+}
+
+.dark-mode .section.alt {
+  background: #2a2a2a !important;
+}
+
+.dark-mode .tutor-card, 
+.dark-mode .card {
+  background: #333 !important;
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.7) !important;
+}
+
+.dark-mode .gallery-img {
+  border-color: #9c27b0 !important;
+}
+
+.dark-mode footer {
+  background: #9c27b0 !important;
+  color: #fff !important;
+}
+
+.dark-mode .modal-content {
+  background: #333 !important;
+  color: #fff !important;
+}
+
+.dark-mode button {
+  background: #9c27b0 !important;
+  color: #fff !important;
+}
+
+.dark-mode button:hover {
+  background: #fff !important;
+  color: #9c27b0 !important;
+}

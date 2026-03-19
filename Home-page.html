@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathafilliation Front Page</title>
+  <link rel="stylesheet" href="Home-page.css">
+
+</head>
+
+<body>
+
+
+  <div class="top-left">
+    <button id="explore">Explore</button>
+  </div>
+
+
+  <div class="top-right">
+    <button id="signup-top">Sign Up</button>
+  </div>
+
+  
+  <div class="header">
+    <img src="images/WhatsApp Image 2025-12-15 at 11.41.20.jpeg" alt="Logo">
+    <h1>Mathafilliation</h1>
+  </div>
+
+  
+  <div class="button-container">
+    <button id="user-login">User Login</button>
+    <button id="tutor-login">Tutor Login</button>
+    <button id="admin-login">Admin Login</button>
+  </div>
+
+  <div class="spiner"></div>
+  <script>
+   
+    document.getElementById('user-login').onclick = () => location.href = "user-login.html";
+    document.getElementById('tutor-login').onclick = () => location.href = "tutor-login.html";
+    document.getElementById('admin-login').onclick = () => location.href = "admin-login.html";
+
+    
+    document.getElementById('explore').onclick = () => location.href = "index.html";
+    document.getElementById('signup-top').onclick = () => location.href = "signup.html";
+  </script>
+
+</body>
+
+</html>

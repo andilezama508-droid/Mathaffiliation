@@ -1,0 +1,50 @@
+body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+h1 { text-align:center; color: #4b1c63; margin-top: 20px; }
+section { background:#fff; max-width:650px; margin:20px auto; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
+input, button { width:100%; padding:10px; margin:8px 0; font-size:14px; }
+button { background:#4b1c63; color:#fff; border:none; cursor:pointer; font-weight:bold; border-radius:5px; }
+button:hover { background:#341247; }
+
+.subject-box, .grade-box {
+  border:1px solid #ddd;
+  padding:10px;
+  border-radius:6px;
+  max-height:150px;
+  overflow-y:auto;
+}
+
+.subject-box label, .grade-box label {
+  display:block;
+  margin-bottom:6px;
+  cursor:pointer;
+}
+
+.tutor-list { margin-top:30px; }
+.tutor-card { 
+  background:#fff; 
+  padding:15px; 
+  margin:10px auto; 
+  max-width:650px; 
+  border-radius:8px; 
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between; 
+  box-shadow:0 2px 6px rgba(0,0,0,0.15); 
+}
+.tutor-card img { width:60px; height:60px; border-radius:5px; margin-right:15px; object-fit:cover; }
+.tutor-info { flex:1; margin-left:10px; }
+.delete-btn { background:#e74c3c; }
+.delete-btn:hover { background:#c0392b; }
+.back-btn { margin:20px auto; display:block; width:150px; text-align:center; }
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

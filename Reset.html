@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Users & Manual Password Reset</title>
+<link rel="stylesheet" href="reset.css">
+
+</head>
+<body>
+
+<div class="topbar">
+  <div><b>Admin | Users & Manual Password Reset</b></div>
+  <button onclick="location.href='dashboard.html'">⬅ Back</button>
+</div>
+
+<div class="controls">
+  <input type="text" id="search" placeholder="Search by name or email">
+  <select id="roleFilter">
+    <option value="all">All Roles</option>
+    <option value="learner">Learner</option>
+    <option value="tutor">Tutor</option>
+  </select>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th class="name-col">Name</th>
+      <th class="email-col">Email</th>
+      <th class="pass-col">Password</th>
+      <th class="role-col">Role</th>
+    </tr>
+  </thead>
+  <tbody id="userTable">
+    <tr><td colspan="4">Loading...</td></tr>
+  </tbody>
+</table>
+
+<script type="module" src="reset.js">
+
+</script>
+
+</body>
+</html>

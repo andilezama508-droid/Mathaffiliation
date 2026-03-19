@@ -1,0 +1,25 @@
+body{font-family:Arial;margin:0;background:rgb(86,26,114);color:#fff;padding:20px}
+.topbar{background:#750092;padding:14px 20px;display:flex;justify-content:space-between;border-radius:10px}
+.topbar button{background:#bc76e4;border:none;padding:8px 14px;border-radius:8px;color:#fff;font-weight:bold;cursor:pointer}
+.container{max-width:900px;margin:25px auto;background:#eddef1;padding:25px;border-radius:15px;color:#000}
+input,select,textarea{width:100%;padding:10px;margin:8px 0 16px;border-radius:6px;border:1px solid #ccc}
+button{background:#4b1c63;color:#fff;border:none;padding:10px 16px;border-radius:6px;cursor:pointer}
+.note-card{background:#fff;padding:15px;border-radius:10px;margin-top:15px}
+.note-card img{max-width:100%;margin-top:10px;border-radius:6px}
+.action-btn{margin-right:10px}
+body.dark-mode {
+  background:#1c1c1c;
+  color:#f0f0f0;
+}
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

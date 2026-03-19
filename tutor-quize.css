@@ -1,0 +1,37 @@
+body{font-family:Arial;margin:0;background:rgb(86,26,114);color:#fff;padding:20px;}
+.topbar{background:#750092;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-radius:10px;}
+.topbar button{background:#bc76e4;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:bold;color:#fff;}
+.container{max-width:900px;margin:25px auto;background:#eddef1;padding:25px;border-radius:15px;color:#000;}
+h2{color:#560a72;}
+.form-box{background:#fafafa;padding:20px;border-radius:12px;margin-bottom:25px;}
+input,select{width:100%;padding:12px;margin:8px 0 16px 0;border-radius:8px;border:1px solid #ccc;}
+button{background:#4b1c63;color:white;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;}
+.small-btn{padding:6px 12px;font-size:0.85rem;}
+.hide{background:#e53935;}.show{background:#43a047;}.edit{background:#fb8c00;}.delete{background:#333;}.view{background:#1976d2;}
+.question-box{background:#fff;padding:15px;border-radius:10px;margin-top:10px;border:1px solid #ddd;}
+.preview{max-width:250px;margin-top:10px;border-radius:8px;}
+.quiz-card{background:#fff;padding:20px;border-radius:12px;margin-bottom:20px;}
+.quiz-header{display:flex;justify-content:space-between;}
+.quiz-actions{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;}
+.questions-view{margin-top:15px;padding:15px;background:#f1f1f1;border-radius:10px;display:none;}
+.question-item{margin-bottom:10px;border-bottom:1px solid #ddd;padding-bottom:10px;}
+.question-img{max-width:250px;margin-top:8px;}
+.status{font-size:0.8rem;padding:4px 8px;border-radius:5px;}
+.active{background:#d4edda;color:#155724;}
+.hidden{background:#f8d7da;color:#721c24;}
+body.dark-mode {
+  background:#1c1c1c;
+  color:#f0f0f0;
+}
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Mathaffiliation" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta charset="UTF-8">
+<link rel="stylesheet" href="learner-document.css">
+<title>Learner | Materials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<!-- Back button -->
+<button class="back-btn" onclick="window.location.href='dashboard1.html'">← Back to Home</button>
+
+<div class="topbar">
+  <div>Learner Materials</div>
+  <div id="gradeDisplay"></div>
+</div>
+
+<div class="wrapper">
+
+<div class="filter">
+  <button class="active" onclick="switchType('past', this)">Past Papers</button>
+  <button onclick="switchType('remedial', this)">Remedials</button>
+  <button onclick="switchType('notes', this)">Notes</button>
+</div>
+
+<h2 id="pageTitle">Past Papers</h2>
+
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search by subject...">
+</div>
+
+<table>
+<thead>
+<tr>
+  <th>Grade</th>
+  <th>Subject</th>
+  <th>Description</th>
+  <th>File</th>
+</tr>
+</thead>
+<tbody id="materialsTable"></tbody>
+</table>
+
+</div>
+
+<script type="module" src="learner-document.js">
+
+</script>
+
+</body>
+</html>

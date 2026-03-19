@@ -1,0 +1,153 @@
+body{
+font-family:Arial;
+margin:0;
+background:#f4f4f9;
+}
+
+.header{
+background:#750092;
+color:white;
+padding:15px 20px;
+display:flex;
+align-items:center;
+gap:15px;
+box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+.backBtn{
+background:white;
+color:#750092;
+border:none;
+padding:8px 12px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.container{
+max-width:1300px;
+margin:auto;
+padding:20px;
+}
+
+/* STAT CARDS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+margin-bottom:20px;
+}
+
+.stat-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 6px 15px rgba(0,0,0,.1);
+text-align:center;
+}
+
+.stat-card h3{
+margin:0;
+color:#750092;
+}
+
+.stat-card p{
+font-size:1.8rem;
+margin:10px 0 0 0;
+font-weight:bold;
+}
+
+/* FILTERS */
+
+.filters{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+
+.filters select,
+.filters input,
+.filters button{
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.filters button{
+background:#bc76e4;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+#ExcelBtn{
+background:#117204;
+}
+
+/* TABLE */
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+box-shadow:0 6px 15px rgba(0,0,0,.1);
+}
+
+th,td{
+padding:10px;
+border-bottom:1px solid #eee;
+text-align:left;
+}
+
+th{
+background:#f0e6f7;
+}
+
+.low{
+color:red;
+font-weight:bold;
+}
+
+.high{
+color:green;
+font-weight:bold;
+}
+
+/* ANALYTICS */
+
+.analytics-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+margin-top:25px;
+}
+
+.analytics-card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 6px 15px rgba(0,0,0,.1);
+}
+
+.analytics-card h3{
+margin-top:0;
+color:#750092;
+}
+body.dark-mode {
+  background:#1c1c1c;
+  color:#f0f0f0;
+}
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

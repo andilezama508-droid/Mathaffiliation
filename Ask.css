@@ -1,0 +1,128 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f0f7;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}
+
+.topbar {
+  background: #750092;
+  color: #fff;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.topbar button {
+  background: #bc76e4;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.topbar button:hover {
+  background: #fff;
+  color: #750092;
+}
+
+
+.container {
+  max-width: 500px;
+  margin: 100px auto 30px auto; 
+  background: #eddef1;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background: #fafafa;
+}
+
+
+button#submit {
+  width: 100%;
+  margin-top: 15px;
+  background: #bc76e4;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button#submit:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+button#submit:hover:enabled {
+  background: #750092;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+
+label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+
+@media (max-width: 500px) {
+  .container {
+    margin: 80px 10px 20px 10px;
+    padding: 20px;
+  }
+
+  input, textarea, select, button {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .topbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .topbar button {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+}

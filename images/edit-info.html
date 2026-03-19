@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit Organization Info | Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="admin.css">
+<style>
+body{font-family:Arial,sans-serif;padding:20px}
+h2{color:#4b1c63}
+input,textarea,button{margin-bottom:10px;padding:8px;width:100%;border-radius:5px;border:1px solid #ccc}
+button{cursor:pointer;background:#4b1c63;color:white;font-weight:bold}
+button:hover{background:#341247}
+
+/* Gallery */
+#drop-zone{
+  border:2px dashed #999; padding:15px; text-align:center; margin-bottom:10px;
+}
+.gallery-preview{
+  display:grid; grid-template-columns:repeat(auto-fill,100px); gap:10px;
+}
+.gallery-preview div{position:relative}
+.gallery-preview img{
+  width:100px; height:100px; object-fit:cover; border-radius:6px;
+}
+.gallery-preview button{
+  position:absolute; top:2px; right:2px; background:red;color:#fff;border:none;cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<h2>Edit Organization Info</h2>
+
+<textarea id="aboutUs" rows="4" placeholder="About Us"></textarea>
+<input type="email" id="email" placeholder="Email">
+<input type="text" id="phone" placeholder="Phone">
+<input type="text" id="facebook" placeholder="Facebook URL">
+<input type="text" id="youtube" placeholder="YouTube URL">
+
+<h3>Gallery (Max 10)</h3>
+<div id="drop-zone">Drag & Drop Images Here</div>
+<input type="file" id="fileInput" multiple accept="image/*">
+<div class="gallery-preview" id="galleryPreview"></div>
+
+<button id="save-info">Save</button>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getDatabase, ref, get, set, push, remove } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+import { getStorage, ref as sRef, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey:"AIzaSyCH72A1FGIOhG8dcQpBkWPBhLDDUzjOouM",
+  authDomain:"student-verification-sys-8040c.firebaseapp.com",
+  databaseURL:"https://student-verification-sys-8040c-default-rtdb.firebaseio.com",
+  projectId:"student-verification-sys-8040c",
+  storageBucket:"student-verification-sys-8040c.appspot.com",
+  messagingSenderId:"863022227296",
+  appId:"1:863022227296:web:5497ab4f3db25ab2344805"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+const storage = getStorage(app);
+
+const aboutUs = document.getElementById("aboutUs");
+const email = document.getElementById("email");
+const phone = document.getElementById("phone");
+const facebook = document.getElementById("facebook");
+const youtube = document.getElementById("youtube");
+
+const dropZone = document.getElementById("drop-zone");
+const fileInput = document.getElementById("fileInput");
+const galleryPreview = document.getElementById("galleryPreview");
+const saveBtn = document.getElementById("save-info");
+
+let adminUid = null;
+
+// -------- AUTH CHECK --------
+onAuthStateChanged(auth, async user=>{
+  if(!user) location.href="admin-login.html";
+  adminUid = user.uid;
+  await loadInfo();
+  await loadGallery();
+});
+
+// -------- LOAD INFO --------
+async function loadInfo(){
+  const snap = await get(ref(db,"info"));
+  if(!snap.exists()) return;
+  aboutUs.value = snap.val().aboutUs || "";
+  email.value = snap.val().contact?.email || "";
+  phone.value = snap.val().contact?.phone || "";
+  facebook.value = snap.val().contact?.facebook || "";
+  youtube.value = snap.val().contact?.youtube || "";
+}
+
+// -------- SAVE INFO --------
+saveBtn.onclick = async()=>{
+  await set(ref(db,"info"),{
+    aboutUs: aboutUs.value,
+    contact:{
+      email: email.value,
+      phone: phone.value,
+      facebook: facebook.value,
+      youtube: youtube.value
+    }
+  });
+  log("Updated organization info");
+  alert("Saved successfully");
+};
+
+// -------- GALLERY --------
+async function loadGallery(){
+  galleryPreview.innerHTML="";
+  const snap = await get(ref(db,"gallery"));
+  if(!snap.exists()) return;
+  snap.forEach(img=>{
+    galleryPreview.innerHTML += `
+      <div>
+        <img src="${img.val().url}">
+        <button onclick="deleteImage('${img.key}','${img.val().path}')">X</button>
+      </div>`;
+  });
+}
+
+window.deleteImage = async(id,path)=>{
+  await deleteObject(sRef(storage,path));
+  await remove(ref(db,"gallery/"+id));
+  log("Deleted image");
+  loadGallery();
+};
+
+async function upload(files){
+  const snap = await get(ref(db,"gallery"));
+  const count = snap.exists() ? Object.keys(snap.val()).length : 0;
+  if(count + files.length > 10){
+    alert("Maximum 10 images allowed"); return;
+  }
+  for(const file of files){
+    const path = `gallery/${Date.now()}_${file.name}`;
+    const uploadSnap = await uploadBytes(sRef(storage,path), file);
+    const url = await getDownloadURL(uploadSnap.ref);
+    await push(ref(db,"gallery"), { url, path, created:Date.now() });
+  }
+  log("Uploaded images");
+  loadGallery();
+}
+
+fileInput.onchange = e => upload(e.target.files);
+dropZone.ondragover = e => e.preventDefault();
+dropZone.ondrop = e => {
+  e.preventDefault();
+  upload(e.dataTransfer.files);
+};
+
+// -------- AUDIT LOG --------
+function log(action){
+  push(ref(db,"auditLogs"),{
+    adminUid,
+    action,
+    time: Date.now()
+  });
+}
+</script>
+
+</body>
+</html>

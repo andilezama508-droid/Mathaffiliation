@@ -1,0 +1,133 @@
+body { 
+  font-family: Arial, sans-serif; 
+  background: rgb(86, 26, 114); /* purple theme */
+  color: #fff; 
+  margin:0; 
+  padding:20px; 
+  box-sizing:border-box;
+}
+
+.back-btn {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #bc76e4;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.back-btn:hover {
+  background-color: #750092;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.topbar{
+  display:flex; 
+  justify-content:space-between; 
+  align-items:center;
+  padding:12px 20px; 
+  background:#4b1c63; 
+  color:#fff;
+  border-radius: 10px;
+}
+
+.topbar div{ font-weight:bold; }
+
+.wrapper{ 
+  padding:20px; 
+  background:#eddef1;
+  color:#000;
+  border-radius:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
+}
+
+.filter button{
+  margin-right:5px; 
+  padding:6px 12px;
+  border:none; 
+  border-radius:4px;
+  background:#4b1c63; 
+  color:#fff; 
+  cursor:pointer;
+  opacity:0.6;
+  transition:0.3s;
+}
+.filter button.active{ 
+  opacity:1; 
+}
+
+table{
+  width:100%; 
+  border-collapse:collapse;
+  background:#fff; 
+  margin-top:10px;
+  color:#000;
+  border-radius:8px;
+  overflow:hidden;
+}
+
+th, td{
+  padding:10px; 
+  border-bottom:1px solid #ddd;
+  text-align:left;
+  vertical-align:middle;
+}
+
+th{ 
+  background:#4b1c63; 
+  color:#fff; 
+}
+
+.search-box input{
+  padding:8px;
+  width:100%;
+  max-width:300px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  margin-bottom:10px;
+}
+
+.download-btn{
+  padding:6px 10px;
+  border:none;
+  border-radius:4px;
+  background:#4b1c63;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+.download-btn:hover{
+  background:#750092;
+}
+
+@media(max-width:600px){
+  .wrapper{
+    padding:15px;
+  }
+  .topbar{
+    flex-direction:column;
+    gap:10px;
+  }
+  .filter button{
+    margin-bottom:5px;
+  }
+}
+body.dark-mode {
+  background:#1c1c1c;
+  color:#f0f0f0;
+}
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

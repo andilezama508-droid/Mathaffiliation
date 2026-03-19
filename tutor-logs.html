@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tutor Monthly Learner Logs | MathAffiliation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="MathAffiliation" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="tutor-logs.css">
+</head>
+
+
+<body>
+
+<div class="topbar">
+<button onclick="window.location.href='dashboard3.html'">⬅ Back</button>
+<div><strong>Tutor – Monthly Learner Logs</strong></div>
+<button onclick="location.reload()">Refresh</button>
+</div>
+
+<div class="container">
+<h1>Learners Login Summary (Current Month)</h1>
+
+<div style="margin-bottom:15px;">
+
+<select id="gradeFilter">
+    
+</select>
+<button class="apply-btn" onclick="exportAllTables()">Export All Tables</button>
+</div>
+
+<div id="weeksTables"></div>
+
+<h2>Monthly Summary</h2>
+<table id="monthlySummaryTable">
+<thead>
+<tr>
+<th>Learner Name</th>
+<th>Email</th>
+<th>Grade</th>
+<th>Total Logins</th>
+<th>Last Login</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</div>
+
+<script type="module" src="tutor-logs.js">
+
+</script>
+</body>
+</html>   

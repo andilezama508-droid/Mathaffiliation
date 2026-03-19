@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Learner Performance | MathAffiliation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"/>
+<link rel="stylesheet" href="statistic.css">
+
+</head>
+
+<body>
+
+<div class="header">
+<button class="backBtn" onclick="location.href='dashboard.html'">⬅ Back</button>
+<h2>Admin Learner Performance</h2>
+</div>
+
+<div class="container">
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat-card">
+<h3>Total Attempts</h3>
+<p id="totalAttempts">0</p>
+</div>
+
+<div class="stat-card">
+<h3>Average Score</h3>
+<p id="avgScore">0%</p>
+</div>
+
+<div class="stat-card">
+<h3>Pass Rate</h3>
+<p id="passRate">0%</p>
+</div>
+
+</div>
+
+<!-- FILTERS -->
+
+<div class="filters">
+
+<input type="text" id="searchLearner" placeholder="Search learner...">
+
+<select id="gradeFilter">
+<option value="">All Grades</option>
+</select>
+
+<select id="subjectFilter">
+<option value="">All Subjects</option>
+</select>
+
+<select id="quizFilter">
+<option value="">All Quizzes</option>
+</select>
+
+<button onclick="applyFilters()">Apply</button>
+<button id="ExcelBtn" onclick="exportExcel()">Export Excel</button>
+
+</div>
+
+<!-- TABLE -->
+
+<table>
+
+<thead>
+<tr>
+<th>Learner</th>
+<th>Grade</th>
+<th>Subject</th>
+<th>Quiz</th>
+<th>Score</th>
+<th>Max</th>
+<th>%</th>
+</tr>
+</thead>
+
+<tbody id="analyticsTable"></tbody>
+
+</table>
+
+<!-- EXTRA ANALYTICS -->
+
+<div class="analytics-grid">
+
+<div class="analytics-card">
+<h3>Average per Subject</h3>
+<div id="subjectAverages"></div>
+</div>
+
+<div class="analytics-card">
+<h3>Average per Learner</h3>
+<div id="learnerAverages"></div>
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="statistic.js">
+
+</script>
+
+</body>
+</html>

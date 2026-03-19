@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learner Dashboard | Mathafilliation</title>
+<link rel="icon" type="image/png" href="/favicon-96x96.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" href="feedback.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h2>Dashboard</h2>
+  <button onclick="location.href='dashboard1.html'">Back</button>
+</div>
+
+<!-- ASK QUESTION -->
+<div class="ask-box">
+  <select id="subjectSelect"><option value="">Loading subjects...</option></select>
+  <textarea id="questionText" placeholder="Describe your problem" rows="4"></textarea>
+  <label>Upload Image (optional)</label>
+  <input type="file" id="questionImage" accept="image/*">
+  <button id="submitQuestion" disabled>Submit Question</button>
+</div>
+
+<!-- FEEDBACK -->
+<div class="layout">
+  <div class="subjects">
+    <h3>Subjects</h3>
+    <div id="subjectList"></div>
+  </div>
+  <div class="chat" id="chat"><p>Select a subject</p></div>
+</div>
+
+<div id="viewer" onclick="this.style.display='none'">
+  <img id="viewImg">
+</div>
+
+<script type="module" src="feedback.js">
+
+
+</script>
+
+</body>
+</html>

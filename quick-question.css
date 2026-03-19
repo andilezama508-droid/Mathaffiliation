@@ -1,0 +1,152 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: rgb(86,26,114);
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: background 0.3s, color 0.3s;
+}
+
+.navbar {
+  background:#750092;
+  color:white;
+  padding:14px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.navbar a {
+  color:white;
+  text-decoration:none;
+  margin-left:20px;
+  font-weight:bold;
+}
+
+.navbar a:hover {
+  text-decoration:underline;
+}
+
+.container {
+  max-width:700px;
+  margin:auto;
+  padding:30px 20px;
+  background:#eddef1;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  color:#000;
+  transition: background 0.3s, color 0.3s;
+}
+
+form {
+  display:flex;
+  flex-direction:column;
+}
+
+h2 {
+  margin-top:0;
+  color:#560a72;
+  text-align:center;
+  transition: color 0.3s;
+}
+
+input, select, textarea {
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  margin-bottom:20px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:1rem;
+  box-sizing:border-box;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+button {
+  padding:14px;
+  background:#4b1c63;
+  border:none;
+  color:white;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:1rem;
+  transition:0.3s;
+}
+
+button:hover {
+  background:#6a1b9a;
+}
+
+.success {
+  color:green;
+  font-weight:bold;
+  margin-top:10px;
+  text-align:center;
+}
+
+/* DARK MODE */
+body.dark-mode {
+  background:#1c1c1c;
+  color:#f0f0f0;
+}
+
+body.dark-mode .navbar {
+  background:#4b1c63;
+}
+
+body.dark-mode .container {
+  background:#333;
+  color:#f0f0f0;
+  box-shadow:0 10px 25px rgba(0,0,0,0.6);
+}
+
+body.dark-mode h2 {
+  color:#ffccff;
+}
+
+body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
+  background:#555;
+  color:#fff;
+  border:1px solid #888;
+}
+
+body.dark-mode button {
+  background:#9c4dd1;
+}
+
+body.dark-mode button:hover {
+  background:#bc76e4;
+}
+
+@media(max-width:600px){
+  .container {
+    padding:20px 15px;
+  }
+  .navbar {
+    flex-direction:column;
+    gap:10px;
+  }
+  input, select, textarea, button {
+    font-size:0.95rem;
+  }
+}
+body.dark-mode {
+  background:#1c1c1c;
+  color:#f0f0f0;
+}
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

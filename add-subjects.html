@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Manage Subjects</title>
+
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="MathAffiliation" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<link rel="stylesheet" href="add-subjects.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div><strong>Admin</strong> — Manage Subjects</div>
+  <div>
+    <button id="darkModeBtn">🌙</button>
+    <button onclick="location.href='dashboard.html'">Dashboard</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section-box">
+    <h3>Add New Subject</h3>
+    <input id="new-subject" placeholder="Subject name (e.g Mathematics)">
+    <button onclick="addSubject()">Add Subject</button>
+  </div>
+
+  <h3>Existing Subjects</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Subject Name</th>
+        <th>Created At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="subjectsTable">
+      <tr><td colspan="3">Loading...</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+<script type="module" src="add-subjects.js"></script>
+
+</body>
+</html>

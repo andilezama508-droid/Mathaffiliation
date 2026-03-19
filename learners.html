@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Learners | Tutor Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<style>
+body { font-family: Arial, sans-serif; background:#f4f4f9; margin:0; padding:0; }
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 20px;
+  background:#4b1c63;
+  color:#fff;
+}
+
+.topbar div:first-child { font-weight:bold; font-size:16px; }
+
+.topbar button{
+  padding:6px 12px;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+  background:#fff;
+  color:#4b1c63;
+  font-weight:bold;
+  margin-left:6px;
+  transition:0.2s;
+}
+
+.topbar button:hover{ background:#ddd; }
+
+.wrapper{ padding:20px; }
+
+.stats{
+  margin-bottom:15px;
+  font-weight:bold;
+  font-size:15px;
+}
+
+.grade-buttons{
+  margin-bottom:15px;
+}
+
+.grade-buttons button{
+  margin-right:6px;
+  margin-bottom:6px;
+  padding:6px 14px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+  background:#4b1c63;
+  color:#fff;
+  font-weight:bold;
+  transition:0.2s;
+}
+
+.grade-buttons button:hover{
+  background:#341247;
+}
+
+.search-box{
+  margin:10px 0 15px 0;
+}
+
+.search-box input{
+  width:100%;
+  padding:8px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+.export-btn{
+  background:#4b1c63;
+  color:white;
+  border:none;
+  padding:8px 16px;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.export-btn:hover{
+  background:#341247;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+  border-radius:8px;
+  overflow:hidden;
+  table-layout:fixed;
+}
+
+th,td{
+  padding:12px;
+  border-bottom:1px solid #eee;
+  text-align:left;
+  vertical-align:middle;
+  word-wrap:break-word;
+}
+
+th{
+  background:#4b1c63;
+  color:#fff;
+}
+
+tr:hover{
+  background:#f1f1f1;
+}
+
+.edit-btn{
+  background:#ff9800;
+  color:white;
+  border:none;
+  padding:4px 8px;
+  border-radius:4px;
+  cursor:pointer;
+}
+
+.edit-btn:hover{ background:#e68900; }
+
+/* Column widths */
+th:nth-child(1), td:nth-child(1){ width:25%; }
+th:nth-child(2), td:nth-child(2){ width:25%; }
+th:nth-child(3), td:nth-child(3){ width:15%; }
+th:nth-child(4), td:nth-child(4){ width:15%; }
+th:nth-child(5), td:nth-child(5){ width:20%; } /* Actions */
+
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div><strong>Tutor Panel – My Learners</strong></div>
+  <div>
+    <button onclick="window.location.href='quize-score.html'">Quize Scores</button>
+    <button onclick="location.href='dashboard3.html'">Back</button>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <div class="stats">
+    Total Learners in Selected Grade: <span id="count">0</span>
+  </div>
+
+  <div class="grade-buttons" id="grade-buttons"></div>
+
+  <div class="search-box">
+    <input type="text" id="search-input" placeholder="Search learner by name or email...">
+  </div>
+
+  <button class="export-btn" onclick="exportExcel()">Export to Excel</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Grade(s)</th>
+        <th>Registered</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="learners-body">
+      <tr><td colspan='5'>Loading...</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal" id="editModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5);">
+  <div style="background:white; max-width:500px; margin:10% auto; padding:20px; border-radius:8px; position:relative;">
+    <span style="position:absolute; right:15px; top:10px; cursor:pointer;" id="closeModal">✖</span>
+    <h3>Edit Learner</h3>
+    <input type="text" id="editName" placeholder="Name" style="width:100%; padding:8px; margin-bottom:10px;">
+    <input type="text" id="editGrades" placeholder="Grades (comma separated)" style="width:100%; padding:8px; margin-bottom:10px;">
+    <button style="background:#4b1c63; color:white; padding:8px 12px; border:none; border-radius:5px; cursor:pointer;" id="saveEdit">Save</button>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD9I6EBsk4k2hykZo0Yzp67CHrJQjIf2ts",
+  authDomain: "online-tutoring-system-d2a40.firebaseapp.com",
+  databaseURL: "https://online-tutoring-system-d2a40-default-rtdb.firebaseio.com",
+  projectId: "online-tutoring-system-d2a40",
+  storageBucket: "online-tutoring-system-d2a40.firebasestorage.app",
+  messagingSenderId: "476767991196",
+  appId: "1:476767991196:web:98d6814aa85c3c9603c459",
+  measurementId: "G-M4N6FFX2F6"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+const learnersBody = document.getElementById("learners-body");
+const countSpan = document.getElementById("count");
+const searchInput = document.getElementById("search-input");
+const gradeButtonsDiv = document.getElementById("grade-buttons");
+
+let allLearners = [];
+let tutorGrades = [];
+let selectedGrade = null;
+let currentEditId = null;
+
+onAuthStateChanged(auth, async (user)=>{
+  if(!user){ location.href="tutor-login.html"; return; }
+
+  const tutorsSnap = await get(ref(db,"tutors"));
+  tutorsSnap.forEach(child=>{
+    const t = child.val();
+    if(t.email === user.email){
+      tutorGrades = t.grades || (t.grade ? [t.grade] : []);
+    }
+  });
+
+  if(tutorGrades.length === 0){
+    learnersBody.innerHTML = "<tr><td colspan='5'>Tutor grades not found.</td></tr>";
+    return;
+  }
+
+  gradeButtonsDiv.innerHTML = "";
+  tutorGrades.forEach(grade=>{
+    const btn = document.createElement("button");
+    btn.textContent = "Grade " + grade;
+    btn.onclick = ()=> { selectedGrade = grade; loadLearners(selectedGrade); };
+    gradeButtonsDiv.appendChild(btn);
+  });
+
+  selectedGrade = tutorGrades[0];
+  loadLearners(selectedGrade);
+});
+
+async function loadLearners(grade){
+  const usersSnap = await get(ref(db,"users"));
+  allLearners = [];
+
+  if(usersSnap.exists()){
+    usersSnap.forEach(child=>{
+      const u = child.val();
+      if(u.role !== "learner") return;
+
+      if( (u.grade && u.grade.toString() === grade.toString()) ||
+          (Array.isArray(u.grades) && u.grades.includes(grade)) ){
+        allLearners.push({ ...u, id: child.key });
+      }
+    });
+  }
+
+  renderLearners(allLearners);
+}
+
+function renderLearners(data){
+  learnersBody.innerHTML="";
+  if(data.length===0){
+    learnersBody.innerHTML="<tr><td colspan='5'>No learners found in this grade.</td></tr>";
+    countSpan.textContent = 0;
+    return;
+  }
+
+  data.forEach(u=>{
+    const gradesDisplay = u.grades ? u.grades.join(", ") : u.grade || "-";
+    learnersBody.innerHTML += `
+      <tr>
+        <td>${u.name || "-"}</td>
+        <td>${u.email || "-"}</td>
+        <td>${gradesDisplay}</td>
+        <td>${u.createdAt ? new Date(u.createdAt).toLocaleDateString() : "-"}</td>
+        <td><button class="edit-btn" onclick="openEdit('${u.id}','${u.name}','${gradesDisplay}')">Edit</button></td>
+      </tr>
+    `;
+  });
+
+  countSpan.textContent = data.length;
+}
+
+searchInput.addEventListener("input", e=>{
+  const term = e.target.value.toLowerCase();
+  const filtered = allLearners.filter(u=>{
+    return (u.name && u.name.toLowerCase().includes(term)) ||
+           (u.email && u.email.toLowerCase().includes(term));
+  });
+  renderLearners(filtered);
+});
+
+window.exportExcel = function(){
+  if(allLearners.length === 0) return alert("No data to export.");
+  let csv = "Name,Email,Grades,Registered\n";
+  allLearners.forEach(u=>{
+    const gradesDisplay = u.grades ? u.grades.join(",") : u.grade || "-";
+    const registered = u.createdAt ? new Date(u.createdAt).toLocaleDateString() : "-";
+    csv += `${u.name},${u.email},"${gradesDisplay}",${registered}\n`;
+  });
+  const blob = new Blob([csv]);
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `learners-grade-${selectedGrade || 'all'}.csv`;
+  a.click();
+};
+
+// Edit modal
+const editModal = document.getElementById("editModal");
+const closeModal = document.getElementById("closeModal");
+const editNameInput = document.getElementById("editName");
+const editGradesInput = document.getElementById("editGrades");
+const saveEditBtn = document.getElementById("saveEdit");
+
+window.openEdit = function(id,name,grades){
+  currentEditId = id;
+  editNameInput.value = name;
+  editGradesInput.value = grades;
+  editModal.style.display = "block";
+};
+
+closeModal.onclick = ()=> editModal.style.display = "none";
+
+saveEditBtn.onclick = async ()=>{
+  if(!currentEditId) return;
+  const updates = {
+    name: editNameInput.value,
+    grades: editGradesInput.value.split(",").map(g=>g.trim())
+  };
+  await update(ref(db,"users/"+currentEditId), updates);
+  alert("Learner updated successfully");
+  editModal.style.display = "none";
+  loadLearners(selectedGrade);
+};
+document.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("darkMode") === "enabled" || 
+      (!localStorage.getItem("darkMode") && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.classList.add("dark-mode");
+  }
+});
+</script>
+
+</body>
+</html>

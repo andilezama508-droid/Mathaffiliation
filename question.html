@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathAffiliation | Questions</title>
+<link rel="stylesheet" href="question.css">
+</head>
+
+
+
+<body>
+
+<div class="navbar">
+
+<div class="nav-left">
+<button onclick="window.location.href='index.html'">⬅ Back</button>
+</div>
+
+<div><b>MathAffiliation</b></div>
+
+<div class="nav-right">
+<button onclick="toggleDarkMode()">🌙</button>
+<button onclick="location.reload()">Refresh</button>
+</div>
+
+</div>
+
+<div class="container">
+
+<div id="gradeCards"></div>
+
+<div id="subjectsArea"></div>
+
+<div id="questionBox" class="questionBox">
+
+<h3 id="subject"></h3>
+<p id="grade"></p>
+
+<h4>Question</h4>
+<p id="textQuestion"></p>
+
+<img id="imageQuestion">
+
+<button class="showBtn" onclick="showSolution()">Show Solution</button>
+
+<div id="solutionBox" class="solutionBox">
+
+<h4>Solution</h4>
+<p id="solution"></p>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="question.js">
+
+
+</script>
+
+</body>
+</html>

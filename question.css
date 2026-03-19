@@ -1,0 +1,195 @@
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#561a8e;
+transition:background .3s,color .3s;
+}
+
+/* DARK MODE */
+
+body.dark{
+background:#1a1a1a;
+color:#eee;
+}
+
+body.dark .container{
+background:#2a2a2a;
+}
+
+body.dark .navbar{
+background:#111;
+}
+
+body.dark .folder{
+background:#333;
+color:white;
+}
+
+body.dark .card{
+background:#3a3a3a;
+color:white;
+}
+
+body.dark .questionBox{
+background:#2f2f2f;
+}
+
+body.dark .solutionBox{
+background:#3b3350;
+}
+
+/* NAVBAR */
+
+.navbar{
+background:#6a1b9a;
+color:white;
+padding:18px 35px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+}
+
+.nav-left,
+.nav-right{
+display:flex;
+gap:12px;
+align-items:center;
+}
+
+.navbar button{
+background:#bc76e4;
+border:none;
+padding:8px 14px;
+border-radius:8px;
+font-weight:bold;
+color:white;
+cursor:pointer;
+}
+
+.navbar button:hover{
+background:white;
+color:#6a1b9a;
+}
+
+/* MAIN CONTAINER */
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:35px;
+background:#f4ecff;
+border-radius:12px;
+margin-top:50px;
+transition:background .3s;
+}
+
+/* GRADE CARDS */
+
+#gradeCards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:25px;
+margin-bottom:30px;
+}
+
+.gradeCard{
+height:120px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+font-weight:bold;
+color:white;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+transition:.2s;
+}
+
+.gradeCard:hover{
+transform:scale(1.05);
+}
+
+.grade8{background:#2196f3;}
+.grade9{background:#4caf50;}
+.grade10{background:#ff9800;}
+.grade11{background:#9c27b0;}
+.grade12{background:#f44336;}
+
+/* SUBJECTS */
+
+.folder{
+display:block;
+width:100%;
+text-align:left;
+padding:12px;
+background:#ede3ff;
+border:none;
+margin-top:10px;
+cursor:pointer;
+font-weight:bold;
+border-radius:6px;
+}
+
+.subjectBox{margin-left:30px;}
+.topicBox{margin-left:60px;}
+
+.card{
+background:white;
+padding:12px;
+margin:8px 0;
+border-radius:8px;
+cursor:pointer;
+box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+/* QUESTION BOX */
+
+.questionBox{
+display:none;
+background:white;
+padding:30px;
+margin-top:40px;
+border-radius:10px;
+box-shadow:0 4px 20px rgba(0,0,0,.2);
+}
+
+.questionBox img{
+max-width:100%;
+margin-top:10px;
+}
+
+.solutionBox{
+display:none;
+background:#efe5ff;
+padding:15px;
+margin-top:15px;
+border-radius:8px;
+}
+
+.showBtn{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+background:#6a1b9a;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+body.dark-mode {
+  background:#1c1c1c;
+  color:#f0f0f0;
+}
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

@@ -1,0 +1,81 @@
+body { font-family: Arial; background:#f4f0fa; margin:0; padding:0; }
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px 20px;
+  background:linear-gradient(135deg,#750092,#bc76e4);
+  color:#fff;
+}
+.topbar button{
+  background:#fff;
+  color:#750092;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.container{
+  max-width:900px;
+  margin:20px auto;
+  padding:10px;
+}
+h2 { text-align:center; color:#750092; margin-bottom:15px; }
+input[type=file]{
+  display:block;
+  margin:0 auto 10px auto;
+}
+button#uploadBtn{
+  display:block;
+  margin:0 auto 20px auto;
+  background:#750092;
+  color:#fff;
+  border:none;
+  padding:10px 20px;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,150px);
+  gap:10px;
+  justify-content:center;
+}
+.gallery div{
+  position:relative;
+}
+.gallery img{
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  border-radius:6px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+.gallery button.delete-btn{
+  position:absolute;
+  top:5px;
+  right:5px;
+  background:red;
+  color:white;
+  border:none;
+  border-radius:50%;
+  width:25px;
+  height:25px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

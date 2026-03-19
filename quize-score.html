@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tutor Learner Performance | MathAffiliation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"  href="quize-score.css">
+</head>
+
+<body>
+
+<div class="header">
+<h2>Tutor Learner Performance</h2>
+<a class="back-btn" href="dashboard3.html">⬅ Back</a>
+</div>
+
+<div class="container">
+
+<div class="filters">
+
+<select id="gradeFilter">
+<option value="">All Grades</option>
+</select>
+
+<select id="subjectFilter">
+<option value="">All Subjects</option>
+</select>
+
+<select id="quizFilter">
+<option value="">All Quizzes</option>
+</select>
+
+<button onclick="applyFilters()">Apply Filters</button>
+<button id="excelBtn" onclick="exportExcel()">Export Excel</button>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>Learner Name</th>
+<th>Grade</th>
+<th>Subject</th>
+<th>Quiz</th>
+<th>Attempts</th>
+<th>Average %</th>
+</tr>
+</thead>
+
+<tbody id="analyticsTable"></tbody>
+
+</table>
+
+<div class="chart-box">
+<h3>Quiz Performance Chart</h3>
+<canvas id="performanceChart"></canvas>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="quize-score.js">
+
+
+
+</script>
+
+</body>
+</html>

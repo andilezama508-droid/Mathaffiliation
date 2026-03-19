@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Mathaffiliation" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Tutors | Mathafilliation</title>
+<link rel="stylesheet" href="Add-tutors.css">
+  
+<body>
+
+<h1>Manage Tutors</h1>
+
+<section>
+  <h2>Add Tutor</h2>
+  <input id="tutor-name" placeholder="Tutor Name">
+  <input id="tutor-email" placeholder="Email">
+  <input id="tutor-password" placeholder="Password">
+
+  <h3>Select Subjects (1–3)</h3>
+  <div class="subject-box" id="subject-container">
+    Loading subjects...
+  </div>
+
+  <h3>Select Grades of Specialisation (1–2)</h3>
+  <div class="grade-box" id="grade-container">
+    <label><input type="checkbox" value="8"> Grade 8</label>
+    <label><input type="checkbox" value="9"> Grade 9</label>
+    <label><input type="checkbox" value="10"> Grade 10</label>
+    <label><input type="checkbox" value="11"> Grade 11</label>
+    <label><input type="checkbox" value="12"> Grade 12</label>
+  </div>
+
+  <input id="tutor-photo-file" type="file" accept="image/*">
+  <button onclick="addTutor()">Save Tutor</button>
+</section>
+
+<section class="tutor-list" id="tutor-list">
+  <h2>All Tutors</h2>
+</section>
+
+<button class="back-btn" onclick="location.href='other.html'">Back</button>
+
+<script type="module" src="Add-tutors.js">
+
+
+</script>
+
+</body>
+</html>

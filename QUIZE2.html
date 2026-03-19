@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz | MathAffiliation</title>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f3f0f7;
+  color: #070707;
+}
+.topbar {
+  background: #750092;
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.topbar button { margin-left: 10px; }
+.container { max-width: 950px; margin: auto; padding: 20px; }
+.quiz-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.1);
+}
+.quiz-meta { font-size: 14px; color: #750092; margin-bottom: 10px; }
+.timer { font-size: 18px; font-weight: bold; color: #750092; margin-bottom: 10px; }
+.nav-palette { margin: 10px 0; }
+.nav-palette button { width: 30px; height: 30px; margin: 2px; cursor: pointer; }
+.nav-palette button.answered { background: green; color: #fff; }
+.nav-palette button.unanswered { background: red; color: #fff; }
+.question { padding: 15px 0; border-bottom: 1px solid #eee; }
+.options { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.options label { display: block; padding: 8px 10px; border-radius: 6px; background: #f5f5f5; }
+.options label.correct { color: green; font-weight: bold; }
+.options label.wrong { color: red; font-weight: bold; }
+.question-img { max-width: 350px; width: 100%; margin-top: 8px; border-radius: 6px; border: 1px solid #ddd; }
+button { padding: 12px 18px; background: #bc76e4; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+button:hover { background: #750092; }
+.progress { margin-bottom: 10px; font-weight: bold; }
+body.dark-mode { background: #1c1c1c; color: #f0f0f0; }
+body.dark-mode .quiz-box { background: #2a2a2a; color: #fff; box-shadow: 0 6px 16px rgba(0,0,0,.6); }
+body.dark-mode .options label { background: #333; }
+body.dark-mode .options label:hover { background: #444; }
+body.dark-mode .topbar { background: #4c0061; }
+@media(max-width:768px){
+  .container{padding:15px;}
+  .quiz-box{padding:15px;}
+  .nav-palette button{width:30px;height:30px;font-size:12px;}
+  .timer{font-size:16px;}
+  button{width:100%;margin-top:10px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div><strong>MathAffiliation</strong> — Quizzes</div>
+  <div>
+    <button id="darkModeBtn">🌙</button>
+    <button onclick="location.href='dashboard1.html'">Dashboard</button>
+  </div>
+</div>
+
+<div class="container">
+  <div style="margin-bottom:15px;">
+    <label>Select Subject:</label>
+    <select id="subjectFilter">
+      <option value="" disabled selected>-- Select Subject --</option>
+    </select>
+  </div>
+  <div id="quiz-list">
+    <p>Please select a subject to see available quizzes.</p>
+  </div>
+  <div id="pagination" class="pagination"></div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getDatabase, ref, get, push, set } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD9I6EBsk4k2hykZo0Yzp67CHrJQjIf2ts",
+  authDomain: "online-tutoring-system-d2a40.firebaseapp.com",
+  databaseURL: "https://online-tutoring-system-d2a40-default-rtdb.firebaseio.com",
+  projectId: "online-tutoring-system-d2a40",
+  storageBucket: "online-tutoring-system-d2a40.appspot.com",
+  messagingSenderId: "476767991196",
+  appId: "1:476767991196:web:98d6814aa85c3c9603c459"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
+
+let currentUserId = "";
+let learnerGrade = "";
+let quizzes = {};
+let attemptsMap = {};
+let selectedSubject = "";
+let activeQuiz = null;
+let timerInterval = null;
+let autoSaveInterval = null;
+const pageSize = 5;
+let currentPage = 1;
+let quizAnswers = {};
+let currentQuestionIndex = 0;
+
+async function loadAttempts(){
+  const snap = await get(ref(db,"attempts"));
+  attemptsMap = {};
+  if(!snap.exists()) return;
+  Object.values(snap.val()).forEach(a=>{
+    if(a.userId === currentUserId){
+      if(!attemptsMap[a.quizId]) attemptsMap[a.quizId] = [];
+      attemptsMap[a.quizId].push(a);
+    }
+  });
+}
+
+async function loadQuizzes(){
+  const snap = await get(ref(db,"quizzes"));
+  quizzes = {};
+  if(!snap.exists()) return;
+  Object.entries(snap.val()).forEach(([id,q])=>{
+    if(!q.subjectName && q.subject) q.subjectName = q.subject;
+    else if(!q.subjectName) q.subjectName = "Unknown Subject";
+    if(q.grade === learnerGrade && q.status === "active") quizzes[id] = q;
+  });
+  populateSubjects();
+  currentPage = 1;
+  renderQuizzes();
+}
+
+function populateSubjects(){
+  const select = document.getElementById("subjectFilter");
+  const subjects = new Set();
+  Object.values(quizzes).forEach(q=>subjects.add(q.subjectName || "Unknown Subject"));
+  select.innerHTML = `<option value="" disabled selected>-- Select Subject --</option>`;
+  subjects.forEach(sub=>{
+    const opt = document.createElement("option");
+    opt.value = sub; opt.textContent = sub;
+    select.appendChild(opt);
+  });
+}
+
+document.getElementById("subjectFilter").addEventListener("change", e=>{
+  selectedSubject = e.target.value;
+  currentPage = 1;
+  renderQuizzes();
+});
+
+function renderQuizzes(){
+  const list = document.getElementById("quiz-list");
+  list.innerHTML = "";
+  if(!selectedSubject){
+    list.innerHTML = "<p>Please select a subject to see available quizzes.</p>";
+    document.getElementById("pagination").innerHTML = "";
+    return;
+  }
+  const filtered = Object.entries(quizzes).filter(([id,q])=> q.subjectName === selectedSubject );
+  if(filtered.length === 0){
+    list.innerHTML = "<p>No quizzes available for this subject.</p>";
+    document.getElementById("pagination").innerHTML = "";
+    return;
+  }
+  const start = (currentPage-1)*pageSize;
+  const end = start + pageSize;
+  const pageQuizzes = filtered.slice(start,end);
+  pageQuizzes.forEach(([id,q])=>{
+    const used = (attemptsMap[id]||[]).length;
+    const max = q.attempts||1;
+    const btn = used < max ? `<button onclick="startQuiz('${id}')">Start Quiz (${used}/${max})</button>` :
+                              `<button onclick="reviewQuiz('${id}')">Review</button>`;
+    const box = document.createElement("div");
+    box.className = "quiz-box";
+    box.innerHTML = `<h3>${q.title}</h3>
+      <div class="quiz-meta">Subject: ${q.subjectName} | Questions: ${q.questions.length} | Attempts: ${used}/${max}</div>
+      ${btn}
+      <div id="quizArea-${id}" style="display:none"></div>`;
+    list.appendChild(box);
+  });
+  renderPagination(filtered.length);
+}
+
+function renderPagination(total){
+  const pages = Math.ceil(total/pageSize);
+  const container = document.getElementById("pagination");
+  container.innerHTML = "";
+  if(pages <= 1) return;
+  for(let i=1;i<=pages;i++){
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    if(i===currentPage) btn.classList.add("active");
+    btn.onclick = ()=>{ currentPage=i; renderQuizzes(); };
+    container.appendChild(btn);
+  }
+}
+
+window.startQuiz = (id)=>{
+  if(activeQuiz){ alert("Finish current quiz first"); return; }
+  activeQuiz = id; quizAnswers={}; currentQuestionIndex=0;
+  const quiz = quizzes[id]; const area = document.getElementById(`quizArea-${id}`);
+  area.style.display = "block";
+  if(document.documentElement.requestFullscreen){document.documentElement.requestFullscreen().catch(()=>{});}
+  let html = `<div class="timer" id="timer-${id}"></div>
+  <div class="progress" id="progress-${id}"></div>
+  <div class="nav-palette" id="nav-${id}"></div>
+  <form id="quizForm-${id}">`;
+  quiz.questions.forEach((q,i)=>{
+    html += `<div class="question" id="q-${i}" style="display:none">
+      <strong>Q${i+1}: ${q.questionText}</strong>
+      ${q.imageUrl? `<img src="${q.imageUrl}" class="question-img">` : ""}
+      <div class="options">
+        <label><input type="radio" name="q${i}" value="A" onchange="markAnswer(${i})"> A. ${q.options.A}</label>
+        <label><input type="radio" name="q${i}" value="B" onchange="markAnswer(${i})"> B. ${q.options.B}</label>
+        <label><input type="radio" name="q${i}" value="C" onchange="markAnswer(${i})"> C. ${q.options.C}</label>
+        <label><input type="radio" name="q${i}" value="D" onchange="markAnswer(${i})"> D. ${q.options.D}</label>
+      </div></div>`;
+  });
+  html += `<button type="button" onclick="submitQuiz('${id}')">Submit Quiz</button></form>`;
+  area.innerHTML = html;
+  showQuestion(id,0);
+  buildNavPalette(id);
+  let seconds=(quiz.timeLimitMinutes||10)*60;
+  const display=document.getElementById(`timer-${id}`);
+  timerInterval=setInterval(()=>{
+    let m=Math.floor(seconds/60),s=seconds%60;
+    display.textContent=`Time: ${m}:${s.toString().padStart(2,"0")}`;
+    seconds--; if(seconds<0){clearInterval(timerInterval); submitQuiz(id);}
+  },1000);
+  autoSaveInterval=setInterval(()=>{localStorage.setItem(`quiz_${id}`, JSON.stringify(quizAnswers));},5000);
+};
+
+function showQuestion(id,index){
+  const quiz=quizzes[id];
+  quiz.questions.forEach((q,i)=>document.getElementById(`q-${i}`).style.display=i===index?"block":"none");
+  currentQuestionIndex=index; updateProgress(id);
+}
+
+window.markAnswer=(i)=>{
+  const q=document.querySelector(`#q-${currentQuestionIndex} input[name=q${currentQuestionIndex}]:checked`);
+  if(q) quizAnswers[currentQuestionIndex]=q.value;
+  buildNavPalette(activeQuiz); updateProgress(activeQuiz);
+};
+
+function buildNavPalette(id){
+  const quiz=quizzes[id]; const container=document.getElementById(`nav-${id}`);
+  container.innerHTML="";
+  quiz.questions.forEach((q,i)=>{
+    const btn=document.createElement("button");
+    btn.textContent=i+1;
+    btn.className=quizAnswers[i]?"answered":"unanswered";
+    btn.onclick=()=>{ showQuestion(id,i); };
+    container.appendChild(btn);
+  });
+}
+
+function updateProgress(id){
+  const total=Object.keys(quizzes[id].questions).length;
+  const answered=Object.keys(quizAnswers).length;
+  document.getElementById(`progress-${id}`).textContent=`Answered ${answered} of ${total} questions`;
+}
+
+window.submitQuiz=async(id)=>{
+  clearInterval(timerInterval); clearInterval(autoSaveInterval);
+  const quiz=quizzes[id]; if(!document.getElementById(`quizForm-${id}`)) return;
+  let score=0; quiz.questions.forEach((q,i)=>{if(quizAnswers[i]&&quizAnswers[i]===q.correctOption) score++;});
+  await set(push(ref(db,"attempts")),{
+    userId: currentUserId,
+    quizId: id,
+    title: quiz.title,
+    subjectName: quiz.subjectName,
+    grade: quiz.grade,
+    score,
+    total: quiz.questions.length,
+    selectedAnswers: quizAnswers,
+    createdAt: Date.now()
+  });
+  alert(`Score: ${score}/${quiz.questions.length}`);
+  activeQuiz=null; quizAnswers={};
+  await loadAttempts(); renderQuizzes();
+  if(document.fullscreenElement) document.exitFullscreen();
+};
+
+window.reviewQuiz=async(id)=>{
+  const quiz=quizzes[id]; const area=document.getElementById(`quizArea-${id}`);
+  area.style.display="block";
+  const userAttempts=(attemptsMap[id]||[]); if(userAttempts.length===0){alert("No attempt found"); return;}
+  const lastAttempt=userAttempts[userAttempts.length-1]; // show last attempt
+  let html="<h3>Review</h3>";
+  quiz.questions.forEach((q,i)=>{
+    const userAns=lastAttempt.selectedAnswers?.[i]||"";
+    html+=`<div class="question"><strong>Q${i+1}: ${q.questionText}</strong>
+      ${q.imageUrl? `<img src="${q.imageUrl}" class="question-img">` : ""}
+      <div class="options">`;
+    Object.entries(q.options).forEach(([key,val])=>{
+      let cls="";
+      if(key===q.correctOption) cls="correct";
+      else if(key===userAns && userAns!==q.correctOption) cls="wrong";
+      html+=`<label class="${cls}">${key}. ${val} ${key===q.correctOption?'✔':(cls==='wrong'?'❌':'')}</label>`;
+    });
+    html+="</div></div>";
+  });
+  area.innerHTML=html;
+};
+
+/* Auth */
+onAuthStateChanged(auth, async user=>{
+  if(!user){ window.location.href = "login.html"; return; }
+  currentUserId=user.uid;
+  const snap=await get(ref(db,`users/${user.uid}`));
+  learnerGrade=snap.val().grade;
+  await loadAttempts();
+  await loadQuizzes();
+});
+
+/* Dark mode */
+document.addEventListener("DOMContentLoaded", ()=>{
+  const darkBtn=document.getElementById("darkModeBtn");
+  if(localStorage.getItem("darkMode")==="enabled" || (!localStorage.getItem("darkMode") && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+    document.body.classList.add("dark-mode");
+  }
+  darkBtn.onclick=()=>{
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", document.body.classList.contains("dark-mode")?"enabled":"disabled");
+  };
+});
+</script>
+</body>
+</html>

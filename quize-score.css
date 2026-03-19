@@ -1,0 +1,105 @@
+
+body{
+font-family:Arial;
+margin:0;
+background:#f4f4f9;
+}
+
+.header{
+background:#750092;
+color:white;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+.back-btn{
+background:white;
+color:#750092;
+padding:8px 15px;
+border-radius:6px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+.filters{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+
+.filters select,.filters button{
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.filters button{
+background:#bc76e4;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+#excelBtn{
+background:#117204;
+color:white;
+}
+
+#excelBtn:hover{
+background:#034409;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+box-shadow:0 6px 15px rgba(0,0,0,.1);
+}
+
+th,td{
+padding:10px;
+border-bottom:1px solid #eee;
+text-align:left;
+}
+
+th{
+background:#f0e6f7;
+}
+
+.low{ color:#b30000; font-weight:bold; }
+.mid{ color:#cc7a00; font-weight:bold; }
+.high{ color:#117204; font-weight:bold; }
+
+.chart-box{
+background:white;
+padding:20px;
+margin-top:30px;
+border-radius:10px;
+box-shadow:0 6px 15px rgba(0,0,0,.1);
+}
+body.dark-mode {
+  background:#1c1c1c;
+  color:#f0f0f0;
+}
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

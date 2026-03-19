@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Mathaffiliation" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="gallery.css">
+<title>Event Gallery | Admin</title>
+</head>
+<body>
+
+<div class="topbar">
+  <button onclick="location.href='dashboard.html'">← Dashboard</button>
+  <h3>Event Gallery</h3>
+  <span></span>
+</div>
+
+<div class="container">
+  <h2>Upload Event Pictures (Max 5)</h2>
+  <input type="file" id="fileInput" accept="image/*">
+  <button id="uploadBtn">Upload Image</button>
+  <div class="gallery" id="gallery"></div>
+</div>
+
+<script type="module" src="gallery.js">
+
+</script>
+
+</body>
+</html>

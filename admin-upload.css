@@ -1,0 +1,76 @@
+body { font-family: Arial, sans-serif; background:#f0f0f0; margin:0; }
+
+.topbar{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 20px; background:#4b1c63; color:#fff;
+  flex-wrap:wrap;
+}
+
+.topbar div{ font-weight:bold; font-size:1.1rem; }
+.topbar button{
+  padding:8px 12px; border:none; border-radius:5px;
+  background:#fff; color:#4b1c63; font-weight:bold;
+  cursor:pointer; margin-left:5px;
+  transition:0.3s;
+}
+.topbar button:hover { opacity:0.85; }
+
+.wrapper{ padding:20px; max-width:1000px; margin:auto; }
+
+.filter button{
+  margin-right:5px; padding:6px 12px;
+  border:none; border-radius:4px;
+  background:#4b1c63; color:#fff; cursor:pointer;
+  opacity:0.6; transition:0.3s;
+}
+.filter button.active{ opacity:1; }
+
+table{
+  width:100%; border-collapse:collapse;
+  background:#fff; margin-top:10px; border-radius:8px;
+  overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+th, td{
+  padding:10px; border-bottom:1px solid #ddd;
+  text-align:left; vertical-align:middle;
+}
+
+th{ background:#4b1c63; color:#fff; }
+
+.modal{
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,.6); z-index:1000;
+}
+
+.modal-content{
+  background:#fff; width:95%; max-width:500px;
+  margin:5% auto; padding:20px; border-radius:10px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.2);
+}
+
+.modal select, .modal input{
+  width:100%; padding:10px; margin-bottom:10px; border-radius:6px; border:1px solid #ccc;
+}
+
+.close-btn{ float:right; cursor:pointer; font-size:20px; color:#4b1c63; }
+
+.search-box{ margin:15px 0; }
+
+@media(max-width:600px){
+  .topbar{ flex-direction:column; gap:10px; }
+  .filter button{ margin-bottom:5px; }
+  table, th, td{ font-size:0.9rem; }
+}
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

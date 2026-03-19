@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="MathAffiliation" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet"  href="other.css">
+</head>
+
+
+<body>
+
+<div class="topbar">
+  <div>
+    <b>Management Panel</b>
+    <button id="back-Btn" onclick="location.href='dashboard.html'">Dashboard</button>
+  </div>
+
+  <div class="actions">
+    <button onclick="location.href='gallery.html'">Events</button>
+    <button id="editBtn">Edit Info</button>
+  </div>
+</div>
+
+<div class="card-grid" id="cardGrid">
+  <div class="card learners" onclick="showUsers('learner')">
+    <h2 id="learnersCount">0</h2>
+    <p>Learners</p>
+  </div>
+
+  <div class="card tutors" onclick="showUsers('tutor')">
+    <h2 id="tutorsCount">0</h2>
+    <p>Tutors</p>
+  </div>
+
+  <div class="card total" onclick="showUsers('all')">
+    <h2 id="totalCount">0</h2>
+    <p>Total Users</p>
+  </div>
+</div>
+
+<div id="users-section">
+  <h2 id="listTitle">Users</h2>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search name or email">
+
+    <select id="gradeFilter">
+      <option value="all">All Grades</option>
+      <option value="8">Grade 8</option>
+      <option value="9">Grade 9</option>
+      <option value="10">Grade 10</option>
+      <option value="11">Grade 11</option>
+      <option value="12">Grade 12</option>
+    </select>
+
+    <button class="export" onclick="exportExcel()">Export to Excel</button>
+
+    <button class="addUserBtn" onclick="location.href='signup.html'">
+      <img src="images/add-user.png" class="icon"> Add Learner
+    </button>
+    <button class="addUserBtn" onclick="location.href='add-tutors.html'">
+      <img src="images/add-user.png" class="icon"> Add Tutor
+    </button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Subjects</th>
+        <th>Grades</th>
+        <th>Registered</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="userTable"></tbody>
+  </table>
+</div>
+
+<!-- EDIT INFO MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">✖</span>
+    <h3>Organization Info</h3>
+    <textarea id="aboutUs" rows="4" placeholder="About us"></textarea>
+    <input id="email" placeholder="Email">
+    <input id="phone" placeholder="Phone">
+    <input id="facebook" placeholder="Facebook">
+    <input id="youtube" placeholder="Youtube">
+    <button onclick="saveInfo()">Save Info</button>
+  </div>
+</div>
+
+<!-- EDIT USER MODAL -->
+<div class="modal" id="editUserModal">
+  <div class="modal-content">
+    <span class="close" id="closeEditUserModal">✖</span>
+    <h3>Edit User</h3>
+    <input type="text" id="editName" placeholder="Name">
+    <input type="email" id="editEmail" placeholder="Email">
+    <input type="text" id="editGrades" placeholder="Grades (comma separated)">
+    <input type="text" id="editSubjects" placeholder="Subjects (comma separated)">
+    <button id="saveUserBtn">Save Changes</button>
+  </div>
+</div>
+
+<script type="module" src="other.js">
+
+</script>
+
+</body>
+</html>

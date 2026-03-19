@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Learner | Quiz Performance</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"/>
+<link rel="stylesheet"  href="performance.css">
+
+</head>
+<body>
+
+<div class="topbar">
+  <button onclick="window.location.href='dashboard1.html'">⬅ Back</button>
+  <div><strong>Learner – Performance</strong></div>
+  <button onclick="location.reload()">Refresh</button>
+</div>
+
+<div class="container">
+  <h2>Your Quiz Performance by Subject</h2>
+  <div id="subject-list" class="subject-container"></div>
+</div>
+
+<!-- Modal -->
+<div id="review-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script type="module" src="performance.js">
+
+
+</script>
+
+</body>
+</html>

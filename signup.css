@@ -1,0 +1,42 @@
+  * { box-sizing: border-box;  font-family: Arial, Helvetica, sans-serif; } 
+        body { margin: 0; background: rgb(163, 148, 167); }
+        .topbar {
+            position: fixed; top: 0; left: 0; width: 100%; height: 60px;
+            background: #bc76e4; display: flex; align-items: center; padding: 0 20px;
+            color: #ffffff; font-weight: bold;
+        }
+        .page { margin-top: 80px; display: flex; justify-content: center; align-items: flex-start; }
+        .signup-container {
+            background: #eddef1; width: 100%; max-width: 420px; padding: 30px;
+            border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .signup-container h1 { text-align: center; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        input:focus, select:focus { outline: none; border-color: #2563eb; }
+        .signup-btn { width: 100%; padding: 12px; margin-top: 10px; background: #bc76e4; border: none; color: #ffffff; font-size: 16px; border-radius: 4px; cursor: pointer; }
+        .signup-btn:hover { background: #750092; }
+        .login-link { text-align: center; margin-top: 15px; }
+        .login-link a { color: #2563eb; text-decoration: none; font-weight: 600; }
+        .login-link a:hover { text-decoration: underline; }
+        .back-btn {
+            height: 50px; width: 90px; background-color: #750092; color: #ffffff;
+            margin-left: auto; border: none; border-radius: 60px; cursor: pointer;
+        }
+        /* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode {
+  background:#1c1c1c;
+  color:#f0f0f0;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

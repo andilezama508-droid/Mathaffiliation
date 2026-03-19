@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Mathaffiliation" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta charset="UTF-8">
+<title>Ask Question | Mathafilliation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="Ask.css">
+</head>
+<body>
+
+<div class="topbar">
+  <button onclick="location.href='dashboard1.html'">⬅ Back</button>
+  <div>Ask a Question</div>
+  <div></div> 
+</div>
+
+<div class="container">
+  <select id="subject">
+    <option value="">Loading subjects...</option>
+  </select>
+
+  <textarea id="question" placeholder="Describe your problem" rows="5"></textarea>
+
+  <label>Upload Image (optional)</label>
+  <input type="file" id="image" accept="image/*">
+
+  <button id="submit" disabled>Submit Question</button>
+</div>
+
+<script type="module" src="Ask.js">
+
+</script>
+
+</body>
+</html>

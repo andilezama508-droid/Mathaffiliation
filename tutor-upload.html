@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="favicon.png">
+<meta charset="UTF-8">
+<title>Materials Management | Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="MathAffiliation" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="tutor-upload.css">
+</head>
+
+<body>
+
+<div class="topbar">
+  <div>Materials Management</div>
+  <div>
+    <button onclick="location.href='dashboard3.html'">Dashboard</button>
+    <button onclick="openModal()">Upload</button>
+  </div>
+</div>
+
+<div class="wrapper">
+
+<div class="filter">
+  <button class="active" onclick="switchType('past', this)">Past Papers</button>
+  <button onclick="switchType('remedial', this)">Remedials</button>
+  <button onclick="switchType('notes', this)">Notes</button>
+</div>
+
+<h2 id="pageTitle">Past Papers</h2>
+
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search by subject..." style="padding:8px;width:250px;">
+</div>
+
+<table>
+<thead>
+<tr>
+  <th>Grade</th>
+  <th>Subject</th>
+  <th>Description</th>
+  <th>File</th>
+  <th>Actions</th>
+</tr>
+</thead>
+<tbody id="materialsTable"></tbody>
+</table>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<span class="close-btn" onclick="closeModal()">&times;</span>
+<h3>Upload Material</h3>
+
+<select id="grade">
+  <option value="8">Grade 8</option>
+  <option value="9">Grade 9</option>
+  <option value="10">Grade 10</option>
+  <option value="11">Grade 11</option>
+  <option value="12">Grade 12</option>
+</select>
+
+<select id="subjectSelect">
+  <option value="">Loading subjects...</option>
+</select>
+
+<input type="text" id="description" placeholder="Description (e.g Exam 2021 November)">
+
+<input type="file" id="file" accept="application/pdf">
+
+<button onclick="saveMaterial()">Save</button>
+
+</div>
+</div>
+
+<script type="module" src="tutor-upload.js">
+
+</script>
+
+</body>
+</html>

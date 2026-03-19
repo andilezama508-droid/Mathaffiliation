@@ -1,0 +1,190 @@
+.hero {
+  text-align: center;
+  padding: 80px 15px;
+  border-bottom: 5px solid #6a1b9a;
+  background: 
+    linear-gradient(rgba(75,28,99,0.6), rgba(75,28,99,0.6)), 
+    url("images/school.jpeg") center/cover no-repeat;
+  color: white;
+}
+#back-Btn {
+    color: #f8f8f8;
+    background-color: #6a1b9a;
+    width: 60px;
+    border-radius: 20px;
+    margin-top: 10px;
+    height: 60px;
+    cursor: pointer;
+
+}
+#darkModeBtn{
+    color: #f8f8f8;
+    background-color: #6a1b9a;
+    width: 60px;
+    border-radius: 20px;
+    margin-top: 10px;
+    height: 60px;
+    margin-right: 40px;
+    cursor: pointer;
+}
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: rgba(255,255,255,0.1);
+  border-bottom: 4px solid #6a1b9a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 6px 15px rgba(0,0,0,.2);
+}
+.navbar a{
+  text-decoration:none;
+  color:#4b1c63;
+  font-weight:bold;
+  margin-left:15px;
+}
+.navbar a:hover{opacity:0.8;}
+
+
+.hero h1{font-size:42px;margin-bottom:10px;}
+.hero p{max-width:700px;margin:20px auto;font-size:18px;line-height:1.6;}
+
+
+.section{
+  padding:55px 15px;
+  text-align:center;
+}
+.about-box{
+  max-width:900px;
+  margin:auto;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 6px 16px rgba(0,0,0,0.08);
+  padding:35px;
+}
+.about-box p{
+  font-size:17px;
+  margin-bottom:18px;
+  text-align:justify;
+  line-height:1.7;
+}
+
+
+.tutors-section{
+  margin-top:40px;
+  padding:40px 0;
+}
+.tutors-title{
+  text-align:center;
+  font-size:28px;
+  color:#4b1c63;
+  margin-bottom:30px;
+}
+.scroll-wrapper{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+.scroll-track{
+  display:flex;
+  gap:25px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  padding:15px 55px;
+}
+.scroll-track::-webkit-scrollbar{display:none;}
+.scroll-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#6a1b9a;
+  color:#fff;
+  border:none;
+  font-size:22px;
+  cursor:pointer;
+  z-index:5;
+}
+.scroll-left{left:5px;}
+.scroll-right{right:5px;}
+.tutor-card{
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 6px 15px rgba(0,0,0,.2);
+  min-width:260px;
+  max-width:300px;
+  padding:20px;
+  text-align:center;
+  flex-shrink:0;
+}
+.tutor-card img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:12px;
+}
+.tutor-card h4{
+  margin:6px 0;
+  color:#6a1b9a;
+  font-size:1.1rem;
+}
+.tutor-card p{
+  margin:4px 0;
+  font-size:0.95rem;
+  color:#444;
+}
+
+
+.contact-box{
+  background:#fff;
+  max-width:700px;
+  margin:40px auto;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.1);
+}
+.contact-box h3{
+  color:#6a1b9a;
+  margin-bottom:15px;
+}
+.contact-item{
+  margin-bottom:10px;
+  font-size:16px;
+}
+.contact-item a{
+  color:#6a1b9a;
+  text-decoration:none;
+}
+.contact-item a:hover{text-decoration:underline;}
+
+
+footer{
+  background:#6a1b9a;
+  color:#fff;
+  text-align:center;
+  padding:18px;
+  margin-top:30px;
+}
+
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#000000;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

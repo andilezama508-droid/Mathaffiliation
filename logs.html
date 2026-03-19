@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<meta name="apple-mobile-web-app-title" content="Mathaffiliation"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<link rel="stylesheet"  href="logs.css">
+
+<meta charset="UTF-8">
+<title>Login Activity | Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+
+
+<body>
+
+<div class="topbar">
+<button onclick="location.href='dashboard.html'">← Dashboard</button>
+<h3>Login Activity</h3>
+<span></span>
+</div>
+
+<div class="container">
+
+<h2>Monthly Login Analytics</h2>
+
+<div class="filter">
+<label>Select Month:</label>
+<select id="monthFilter"></select>
+</div>
+
+<div class="cards">
+
+<div class="card">
+Total Logins
+<span id="totalLogins">0</span>
+</div>
+
+<div class="card">
+Learner Logins
+<span id="learnerLogins">0</span>
+</div>
+
+<div class="card">
+Tutor Logins
+<span id="tutorLogins">0</span>
+</div>
+
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Email</th>
+<th>Role</th>
+<th>Last Login</th>
+<th>Logins This Month</th>
+</tr>
+</thead>
+
+<tbody id="logsTable"></tbody>
+
+</table>
+
+</div>
+
+<script type="module" src="logs.js">
+
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+body{
+  font-family:Arial;
+  margin:0;
+  background:#f3f0f7;
+}
+.topbar{
+  background:#750092;
+  color:white;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.container{
+  max-width:950px;
+  margin:auto;
+  padding:20px;
+}
+.quiz-box{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  box-shadow:0 6px 16px rgba(0,0,0,.1);
+  color: rgb(7, 7, 7);
+}
+.quiz-meta{
+  font-size:14px;
+  color:#750092;
+  margin-bottom:10px;
+}
+.timer{
+  font-size:18px;
+  font-weight:bold;
+  color:#750092;
+  margin-bottom:10px;
+}
+.progress-container{
+  margin-bottom:15px;
+}
+.progress-info{
+  display:flex;
+  justify-content:space-between;
+  font-weight:bold;
+  margin-bottom:4px;
+}
+.progress-bar{
+  height:12px;
+  background:#ddd;
+  border-radius:6px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:#4CAF50;
+}
+.question-nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:15px;
+  position:sticky;
+  top:0;
+  background:white;
+  padding:10px;
+  border-bottom:1px solid #ddd;
+}
+.nav-btn{
+  width:35px;
+  height:35px;
+  border:none;
+  border-radius:6px;
+  background:#ddd;
+  cursor:pointer;
+  font-weight:bold;
+}
+.nav-btn.answered{
+  background:#4CAF50;
+  color:white;
+}
+.question{
+  padding:15px;
+  border-bottom:1px solid #eee;
+}
+.option{
+  margin:6px 0;
+}
+.option label{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+}
+button{
+  padding:12px 18px;
+  background:#bc76e4;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+button:hover{
+  background:#750092;
+}
+.question-img{
+  max-width:350px;
+  margin-top:8px;
+  border-radius:6px;
+  border:1px solid #ddd;
+}
+.correct-answer{
+  color:green;
+  font-weight:bold;
+}
+.wrong-answer{
+  color:red;
+  font-weight:bold;
+}
+body.dark-mode {
+  background:#1c1c1c;
+  color:#f0f0f0;
+}
+/* Add dark mode overrides for sections like hero, cards, footer, etc. */
+body.dark-mode .hero { 
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("images/school.jpg") center/cover no-repeat;
+}
+body.dark-mode .about-box, body.dark-mode .tutor-card, body.dark-mode .contact-box {
+  background:#b80303;
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+}
+body.dark-mode footer {
+  background:#222;
+}

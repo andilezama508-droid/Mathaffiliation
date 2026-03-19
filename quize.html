@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Mathaffiliation" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta charset="UTF-8">
+<title>Admin | Create Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="quize.css">
+</head>
+
+
+<body>
+
+<div class="topbar">
+  <div><strong>Admin – Create Quiz</strong></div>
+  <button onclick="location.href='dashboard.html'">Dashboard</button>
+</div>
+
+<div class="container">
+  <h2>Create New Quiz</h2>
+
+  <!-- TIME LIMIT -->
+  <input id="quiz-time" type="number" placeholder="Time Limit (minutes)" min="1">
+
+  <!-- QUIZ TITLE -->
+  <input id="quiz-title" placeholder="Quiz Title">
+
+  <!-- SUBJECT -->
+  <select id="quiz-subject">
+    <option value="">Loading subjects…</option>
+  </select>
+
+  <!-- GRADE -->
+  <select id="quiz-grade">
+    <option value="">Select Grade</option>
+    <option value="8">Grade 8</option>
+    <option value="9">Grade 9</option>
+    <option value="10">Grade 10</option>
+    <option value="11">Grade 11</option>
+    <option value="12">Grade 12</option>
+  </select>
+
+  <!-- QUESTIONS -->
+  <div id="questions"></div>
+
+  <button onclick="addQuestion()">➕ Add Question</button>
+  <br><br>
+
+  <button onclick="saveQuiz()">💾 Save Quiz</button>
+  <div class="loader" id="loader">Saving quiz…</div>
+</div>
+
+<script type="module" src="quize.js">
+
+</script>
+
+</body>
+</html>
